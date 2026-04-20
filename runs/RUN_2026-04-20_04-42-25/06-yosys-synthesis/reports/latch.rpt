@@ -1,0 +1,3 @@
+
+16. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\alu_7b.\result' from process `\alu_7b.$proc$/foss/designs/Workshop_IC_Design_UTP/myBootcampChipV2/src/alu_7b.v:10$63'.
