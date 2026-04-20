@@ -1,0 +1,80 @@
+.lib /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include /foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice
+
+* Cambiar RUN_xxx por carpeta real
+.include ../runs/RUN_XXXX/final/spice/tt_um_alu7b.spice
+
+VCC VCC GND DC 1.8
+
+* CLOCK 20ns period
+Vclk clk 0 PULSE(0 1.8 0 0.1n 0.1n 10n 20n)
+
+* Reset activo bajo
+Vrst rst_n 0 PWL(
++0n   0
++30n  0
++30.1n 1.8
+)
+
+* Entrada serial ui_in[0]
+Vbit bit_in 0 PWL(
++0n   0
+
+* A=5 = 1010000 LSB first
++40n 1.8
++60n 0
++80n 1.8
++100n 0
++120n 0
++140n 0
++160n 0
+
+* B=3 = 1100000
++180n 1.8
++200n 1.8
++220n 0
++240n 0
++260n 0
++280n 0
++300n 0
+
+* OP=000 SUMA
++320n 0
++340n 0
++360n 0
+)
+
+* entradas no usadas
+Vui1 ui1 0 0
+Vui2 ui2 0 0
+Vui3 ui3 0 0
+Vui4 ui4 0 0
+Vui5 ui5 0 0
+Vui6 ui6 0 0
+Vui7 ui7 0 0
+
+Vuio0 uio0 0 0
+Vuio1 uio1 0 0
+Vuio2 uio2 0 0
+Vuio3 uio3 0 0
+Vuio4 uio4 0 0
+Vuio5 uio5 0 0
+Vuio6 uio6 0 0
+Vuio7 uio7 0 0
+
+Vena ena 0 1.8
+
+X1 GND VCC \
+bit_in ui1 ui2 ui3 ui4 ui5 ui6 ui7 \
+out0 out1 out2 out3 out4 out5 out6 out7 \
+uio0 uio1 uio2 uio3 uio4 uio5 uio6 uio7 \
+uo0 uo1 uo2 uo3 uo4 uo5 uo6 uo7 \
+ena clk rst_n tt_um_alu7b
+
+.control
+tran 0.1n 450n
+save all
+plot clk rst_n+3 bit_in+6 out0+9 out1+11 out2+13 out3+15 done+18
+.endc
+
+.end
