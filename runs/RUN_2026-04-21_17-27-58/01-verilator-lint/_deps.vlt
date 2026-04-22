@@ -1,0 +1,5 @@
+`verilator_config
+lint_off -rule DECLFILENAME
+lint_off -rule EOFNEWLINE
+lint_off -rule UNDRIVEN -file "/foss/designs/Workshop_IC_Design_UTP/myBootcampChipV2/runs/RUN_2026-04-21_17-27-58/tmp/9f85bd208c894062a149abf4e724b3b1.bb.v"
+lint_off -rule UNUSEDSIGNAL -file "/foss/designs/Workshop_IC_Design_UTP/myBootcampChipV2/runs/RUN_2026-04-21_17-27-58/tmp/9f85bd208c894062a149abf4e724b3b1.bb.v"

@@ -1,0 +1,63 @@
+{
+   "creator": "Yosys 0.62 (git sha1 7326bb7d6, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)",
+   "invocation": "stat -json -liberty /foss/designs/Workshop_IC_Design_UTP/myBootcampChipV2/runs/RUN_2026-04-21_17-18-01/tmp/1f71997699a049959862013d9a73a1b6.lib ",
+   "modules": {
+      "\\tt_um_alu7b": {
+         "num_wires":         491,
+         "num_wire_bits":     587,
+         "num_pub_wires":     14,
+         "num_pub_wire_bits": 74,
+         "num_ports":         8,
+         "num_port_bits":     43,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         520,
+         "num_submodules":       0,
+         "area":              814.531200,
+         "sequential_area":    814.531200,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 153,
+            "$_AND_": 13,
+            "$_MUX_": 31,
+            "$_NAND_": 16,
+            "$_NOR_": 16,
+            "$_NOT_": 23,
+            "$_ORNOT_": 20,
+            "$_OR_": 161,
+            "$_XNOR_": 9,
+            "$_XOR_": 47,
+            "sky130_fd_sc_hd__dfrtp_2": 31
+         }
+      }
+   },
+      "design": {
+         "num_wires":         491,
+         "num_wire_bits":     587,
+         "num_pub_wires":     14,
+         "num_pub_wire_bits": 74,
+         "num_ports":         8,
+         "num_port_bits":     43,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         520,
+         "num_submodules":       0,
+         "area":              814.531200,
+         "sequential_area":    814.531200,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 153,
+            "$_AND_": 13,
+            "$_MUX_": 31,
+            "$_NAND_": 16,
+            "$_NOR_": 16,
+            "$_NOT_": 23,
+            "$_ORNOT_": 20,
+            "$_OR_": 161,
+            "$_XNOR_": 9,
+            "$_XOR_": 47,
+            "sky130_fd_sc_hd__dfrtp_2": 31
+         }
+      }
+}
+

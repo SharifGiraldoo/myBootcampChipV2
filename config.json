@@ -3,7 +3,9 @@
 
   "VERILOG_FILES": [
     "dir::src/alu_7b.v",
+    "dir::src/serial_alu_ctrl.v",
     "dir::src/tt_um_alu7b.v"
+    
   ],
 
   "//": "Tiny Tapeout default config adapted for ALU 7b",

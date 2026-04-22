@@ -1,0 +1,82 @@
+Reading timing models for corner nom_tt_025C_1v80…
+Reading timing library for the 'nom_tt_025C_1v80' corner at '/foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib'…
+Reading timing models for corner nom_ff_n40C_1v95…
+Reading timing library for the 'nom_ff_n40C_1v95' corner at '/foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib'…
+Reading timing models for corner nom_ss_100C_1v60…
+Reading timing library for the 'nom_ss_100C_1v60' corner at '/foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib'…
+Reading OpenROAD database at '/foss/designs/Workshop_IC_Design_UTP/myBootcampChipV2/runs/RUN_2026-04-21_17-18-01/27-openroad-globalplacement/tt_um_alu7b.odb'…
+Reading design constraints file at '/usr/local/lib/python3.12/dist-packages/librelane/scripts/base.sdc'…
+[INFO] Using clock clk…
+[INFO] Setting output delay to: 4
+[INFO] Setting input delay to: 4
+[INFO] Setting load to: 0.033442
+[INFO] Setting clock uncertainty to: 0.25
+[INFO] Setting clock transition to: 0.1499999999999999944488848768742172978818416595458984375
+[INFO] Setting timing derate to: 5%
+[INFO] Setting RC values…
+[INFO RSZ-0027] Inserted 2 input buffers.
+[INFO RSZ-0058] Using max wire length 6335um.
+Iteration | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------
+        0 |       0 |       0 |             0 |       238
+       10 |       9 |       0 |             0 |       228
+       20 |      18 |       0 |             0 |       218
+       30 |      27 |       0 |             0 |       208
+       40 |      35 |       0 |             0 |       198
+       50 |      41 |       0 |             0 |       188
+       60 |      48 |       0 |             0 |       178
+       70 |      56 |       0 |             0 |       168
+       80 |      64 |       0 |             0 |       158
+       90 |      71 |       0 |             0 |       148
+      100 |      76 |       0 |             0 |       138
+      110 |      84 |       0 |             0 |       128
+      120 |      94 |       0 |             0 |       118
+      130 |     104 |       0 |             0 |       108
+      140 |     113 |       0 |             0 |        98
+      150 |     121 |       0 |             0 |        88
+      160 |     129 |       2 |             1 |        78
+      170 |     140 |       4 |             3 |        68
+      180 |     146 |       4 |             3 |        58
+      190 |     156 |       9 |             5 |        48
+      200 |     156 |       9 |             5 |        38
+      210 |     156 |       9 |             5 |        28
+      220 |     156 |       9 |             5 |        18
+      230 |     156 |       9 |             5 |         8
+    final |     156 |       9 |             5 |         0
+---------------------------------------------------------
+[INFO RSZ-0035] Found 5 fanout violations.
+[INFO RSZ-0038] Inserted 9 buffers in 5 nets.
+[INFO RSZ-0039] Resized 156 instances.
+[INFO RSZ-0042] Inserted 14 tie sky130_fd_sc_hd__conb_1 instances.
+[INFO RSZ-0042] Inserted 1 tie sky130_fd_sc_hd__conb_1 instances.
+Placement Analysis
+---------------------------------
+total displacement        506.3 u
+average displacement        1.1 u
+max displacement            7.9 u
+original HPWL            3934.0 u
+legalized HPWL           4332.4 u
+delta HPWL                   10 %
+
+[INFO DPL-0020] Mirrored 81 instances
+[INFO DPL-0021] HPWL before            4332.4 u
+[INFO DPL-0022] HPWL after             4210.5 u
+[INFO DPL-0023] HPWL delta               -2.8 %
+[INFO] Setting RC values…
+Setting global connections for newly added cells…
+[INFO] Setting global connections...
+Updating metrics…
+Cell type report:                       Count       Area
+  Fill cell                                68     255.24
+  Tap cell                                198     247.74
+  Buffer                                    1       5.00
+  Timing Repair Buffer                     11      57.56
+  Inverter                                  8      30.03
+  Sequential cell                          31     829.55
+  Multi-Input combinational cell          162    1186.14
+  Total                                   479    2611.25
+Writing OpenROAD database to '/foss/designs/Workshop_IC_Design_UTP/myBootcampChipV2/runs/RUN_2026-04-21_17-18-01/31-openroad-repairdesignpostgpl/tt_um_alu7b.odb'…
+Writing netlist to '/foss/designs/Workshop_IC_Design_UTP/myBootcampChipV2/runs/RUN_2026-04-21_17-18-01/31-openroad-repairdesignpostgpl/tt_um_alu7b.nl.v'…
+Writing powered netlist to '/foss/designs/Workshop_IC_Design_UTP/myBootcampChipV2/runs/RUN_2026-04-21_17-18-01/31-openroad-repairdesignpostgpl/tt_um_alu7b.pnl.v'…
+Writing layout to '/foss/designs/Workshop_IC_Design_UTP/myBootcampChipV2/runs/RUN_2026-04-21_17-18-01/31-openroad-repairdesignpostgpl/tt_um_alu7b.def'…
+Writing timing constraints to '/foss/designs/Workshop_IC_Design_UTP/myBootcampChipV2/runs/RUN_2026-04-21_17-18-01/31-openroad-repairdesignpostgpl/tt_um_alu7b.sdc'…

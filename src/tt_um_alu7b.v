@@ -1,68 +1,66 @@
+/*
+ * tt_um_alu7b.v — TinyTapeout top-level for the 7-bit serial→parallel ALU
+ *
+ * Bootcamp IC Design & Fabrication — IEEE OpenSilicon / IEEE CASS UTP 2026
+ *
+ * Implements the serial receive FSM and instantiates the combinational alu_7b
+ * module.
+ *
+ * SERIAL INPUT PROTOCOL  (ui_in[0] = Bit_in, LSB first):
+ *
+ *   Posedge  1 ..  7  → Operand A [6:0]
+ *   Posedge  8 .. 14  → Operand B [6:0]
+ *   Posedge 15        → FSM S_CALC: result latched in uo_out, Done=1 on uio_out[0]
+ *
+ * OPCODE (parallel input):
+ *   ui_in[3:1] = op[2:0]  — stable during the entire operation
+ *
+ * LSB-FIRST SHIFT REGISTER (shift-right, new bit enters at MSB):
+ *   reg <= {bit_in, reg[N-1:1]}
+ *   After N posedges: reg[N-1]=MSB ... reg[0]=LSB  ✓
+ *
+ * OUTPUTS:
+ *   uo_out[7:0]  — 8-bit parallel result
+ *   uio_out[0]   — Done: one-cycle high pulse when result is ready
+ *
+ * RESET:
+ *   rst_n = 0 → synchronous reset to initial state; all registers cleared
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/* verilator lint_off TIMESCALEMOD */
 `default_nettype none
 
 module tt_um_alu7b (
-    input  wire [7:0] ui_in,
-    output wire [7:0] uo_out,
-    input  wire [7:0] uio_in,
-    output wire [7:0] uio_out,
-    output wire [7:0] uio_oe,
-    input  wire ena,
-    input  wire clk,
-    input  wire rst_n
+    input  wire [7:0] ui_in,    // ui_in[0]=Bit_in (serial), ui_in[3:1]=op[2:0]
+    output wire [7:0] uo_out,   // Dedicated outputs — result[7:0]
+    input  wire [7:0] uio_in,   // Bidirectional IOs: input path  (unused)
+    output wire [7:0] uio_out,  // Bidirectional IOs: output path — uio_out[0] = Done
+    output wire [7:0] uio_oe,   // Bidirectional IOs: enable path (active high: 1=output)
+    input  wire       ena,      // Always 1 when the design is powered
+    input  wire       clk,      // System clock
+    input  wire       rst_n     // Active-low reset
 );
 
-reg [6:0] regA;
-reg [6:0] regB;
-reg [2:0] regOp;
-reg [7:0] result;
-reg [4:0] count;
-reg done;
 
-wire bit_in;
-assign bit_in = ui_in[0];
+wire done_reg;
 
-wire [7:0] alu_result;
-
-alu_7b alu0(
-    .A(regA),
-    .B(regB),
-    .op(regOp),
-    .result(alu_result)
+serial_alu_ctrl alu (
+    .CLK(clk),
+    .RST_n(rst_n),
+    .Bit_in(ui_in[0]),
+    .op(ui_in[3:1]),
+    .Data_out(uo_out[7:0]),
+    .Done(done_reg)
 );
 
-always @(posedge clk or negedge rst_n) begin
-    if(!rst_n) begin
-        regA   <= 0;
-        regB   <= 0;
-        regOp  <= 0;
-        result <= 0;
-        count  <= 0;
-        done   <= 0;
-    end else begin
-        done <= 0;
+    // ── Output assignments ────────────────────────────────────────────────────
+    assign uio_out = {7'b0, done_reg};  // uio_out[0] = Done; uio_out[7:1] = 0
+    assign uio_oe  = 8'b0000_0001;      // Only uio[0] is an output
 
-        if(count < 7)
-            regA[count] <= bit_in;
-        else if(count < 14)
-            regB[count-7] <= bit_in;
-        else if(count < 17)
-            regOp[count-14] <= bit_in;
-        else if(count == 17) begin
-            result <= alu_result;
-            done <= 1;
-        end
-
-        if(count == 17)
-            count <= 0;
-        else
-            count <= count + 1;
-    end
-end
-
-assign uo_out  = result;
-assign uio_out = {7'b0,done};
-assign uio_oe  = 8'b00000001;
-
-wire _unused = &{ena,uio_in,ui_in[7:1],1'b0};
+    // ── Unused input tie-off (suppresses linter warnings) ────────────────────
+    wire _unused = &{ena, uio_in, ui_in[7:4], 1'b0};
 
 endmodule
+/* verilator lint_on TIMESCALEMOD */
